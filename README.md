@@ -1,71 +1,71 @@
-# **📱 POS Mobile KasirKita – Installation Guide**
+# **📱 POS Mobile KasirKita – Panduan Instalasi**
 
-This POS system leverages a combination of **Google Sheets** (as a free real‑time cloud database) and **Google Apps Script (GAS)** (as the backend API and web hosting server).
+Sistem POS ini menggunakan kombinasi **Google Sheets** (sebagai basis data real‑time cloud gratis) dan **Google Apps Script (GAS)** (sebagai backend API sekaligus server hosting web).
 
-The system includes a **Mutex Lock** mechanism to prevent race conditions when multiple cashiers write to the database simultaneously, ensuring stock levels remain accurate.
+Sistem ini dilengkapi dengan mekanisme **Mutex Lock** untuk mencegah kondisi *race condition* ketika beberapa kasir menulis ke database secara bersamaan, sehingga stok barang tetap akurat.
 
 ---
 
-## **🛠️ Implementation Steps**
+## **🛠️ Langkah‑langkah Penerapan**
 
-### **Step 1: Create a New Google Spreadsheet**
+### **Langkah 1: Buat Google Spreadsheet Baru**
 
-1. Go to [Google Sheets](https://sheets.google.com) and create a new blank spreadsheet.  
-2. Name the file, for example: **"Database POS KasirKita"**.
+1. Buka [Google Sheets](https://sheets.google.com) dan buat spreadsheet kosong baru.  
+2. Beri nama file tersebut, misalnya: **"Database POS KasirKita"**.
 
-### **Step 2: Open the Apps Script Editor**
+### **Langkah 2: Buka Editor Apps Script**
 
-1. In the spreadsheet’s top menu, click **Extensions** → **Apps Script**.  
-2. You will be taken to the integrated Google Workspace code editor.
+1. Di menu atas spreadsheet, klik **Extensions** → **Apps Script**.  
+2. Anda akan masuk ke editor kode terintegrasi Google Workspace.
 
-### **Step 3: Paste the Backend Code (Code.gs)**
+### **Langkah 3: Masukkan Kode Backend (Code.gs)**
 
-1. In the left panel of the Apps Script editor, you will see a file named `Code.gs`.  
-2. Delete all the default functions in it.  
-3. Copy the complete code from the `Code.gs` file (the second file I provided above) and paste it directly into the editor.  
-4. Click the black floppy disk icon (or press `Ctrl+S` / `Cmd+S`) to save.
+1. Di panel kiri editor, Anda akan melihat file bernama `Code.gs`.  
+2. Hapus semua fungsi bawaan yang ada di dalamnya.  
+3. Salin kode lengkap dari file `Code.gs` (file kedua yang saya berikan sebelumnya) dan tempelkan (*paste*) langsung ke editor.  
+4. Klik ikon disket hitam (atau tekan `Ctrl+S` / `Cmd+S`) untuk menyimpan.
 
-### **Step 4: Paste the Frontend Code (index.html)**
+### **Langkah 4: Masukkan Kode Frontend (index.html)**
 
-1. In the left panel, click the **"+" (Add a file)** button, then choose **HTML**.  
-2. Name the new file **index** (it will automatically become `index.html`).  
-3. Open `index.html` and delete all the default template content.  
-4. Copy the complete code from the `index.html` file (the first file I provided above) and paste it into the editor.  
-5. Save the file.
+1. Di panel kiri editor, klik tombol **"+" (Add a file)**, lalu pilih **HTML**.  
+2. Beri nama file baru tersebut **index** (secara otomatis akan menjadi `index.html`).  
+3. Buka `index.html`, lalu hapus semua template bawaan.  
+4. Salin kode lengkap dari file `index.html` (file pertama yang saya berikan sebelumnya) dan tempelkan ke editor.  
+5. Simpan file tersebut.
 
-### **Step 5: Deploy and Run the Web App**
+### **Langkah 5: Terapkan dan Jalankan Web App (Deployment)**
 
-1. In the top‑right corner of the Apps Script editor, click **Deploy** → **New deployment**.  
-2. Click the gear icon (Select type) and choose **Web app**.  
-3. Fill in the configuration fields as follows:  
+1. Di pojok kanan atas editor, klik **Deploy** → **New deployment**.  
+2. Klik ikon roda gigi (Select type) dan pilih **Web app**.  
+3. Isi konfigurasi sebagai berikut:  
    - **Description:** `KasirKita Mobile POS v1`  
-   - **Execute as:** `Me (your email)` – **Required** so the app can write data to the spreadsheet under your account.  
-   - **Who has access:** `Anyone` – Best choice so your cashiers/employees can open the app from their phones without needing to log in with a Google account.  
-4. Click the **Deploy** button.  
-5. If an authorisation window appears (`Authorization required`), grant the necessary permissions: click **Advanced** → **Go to Database POS KasirKita (unsafe)** → **Allow**.  
-6. Google will provide a **Web App URL** at the end. **Copy that URL!**
+   - **Execute as:** `Me (email Anda)` – **Wajib** agar aplikasi memiliki izin menulis data ke spreadsheet atas nama akun Anda.  
+   - **Who has access:** `Anyone` – Pilihan terbaik agar kasir/karyawan dapat membuka aplikasi dari ponsel mereka tanpa perlu login akun Google.  
+4. Klik tombol **Deploy**.  
+5. Jika muncul jendela otorisasi (`Authorization required`), berikan izin akses: klik **Advanced** → **Go to Database POS KasirKita (unsafe)** → **Allow**.  
+6. Google akan memberikan **Web App URL** di akhir proses. **Salin URL tersebut!**
 
 ---
 
-## **🔗 Connecting to a Smartphone**
+## **🔗 Cara Menghubungkan ke Smartphone**
 
-- Open the **Web App URL** you copied on your smartphone (using Chrome, Safari, or any other browser).  
-- For a native‑app‑like experience, choose the browser option **"Add to Home Screen"**. The POS app will then launch in full‑screen mode without the browser’s address bar.
+- Buka **Web App URL** yang sudah disalin di smartphone Anda (menggunakan Chrome, Safari, atau browser lain).  
+- Agar terasa seperti aplikasi asli (*native app*), pilih opsi browser **"Add to Home Screen" (Tambahkan ke Layar Utama)**. Aplikasi POS akan terbuka dalam mode layar penuh tanpa bilah pencarian browser.
 
 ---
 
-## **🗄️ Automatically Created Sheet Structure**
+## **🗄️ Struktur Sheet yang Terbentuk Otomatis**
 
-After you access the app for the first time (or press the **Sync** button), your Google Sheet will automatically create the following tabs:
+Setelah mengakses aplikasi pertama kali (atau menekan tombol **Sinkronisasi**), Google Sheets Anda akan otomatis membuat tab‑tab berikut:
 
-### **1. Products Tab (Product List & Stock)**
+### **1. Tab Products (Daftar Produk & Stok)**
 
 | ID | Name | Category | Price | Cost | Stock |
 | :---- | :---- | :---- | :---- | :---- | :---- |
 | 1 | Kopi Susu Gula Aren | Minuman | 18000 | 8000 | 25 |
 | 2 | Nasi Goreng Spesial | Makanan | 25000 | 12000 | 15 |
 
-### **2. Transactions Tab (Receipt & Sales History)**
+### **2. Tab Transactions (Riwayat Struk & Penjualan)**
 
 | Transaction ID | Timestamp | Subtotal | Items JSON | Items Text | Total | Paid Amount | Change |
 | :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
@@ -73,8 +73,8 @@ After you access the app for the first time (or press the **Sync** button), your
 
 ---
 
-## **🧠 Advantages of the Full‑Stack GAS Architecture**
+## **🧠 Keunggulan Arsitektur Full‑Stack GAS**
 
-1. **Instant Mobile Performance:** The client‑side uses a modern, minimal Tailwind CSS framework. It is extremely lightweight, conserves battery power on cashiers’ phones, and renders quickly.  
-2. **Concurrent Transaction Security:** The backend uses `LockService` to prevent data conflicts when multiple cashiers press the payment button at the same millisecond.  
-3. **Hybrid Local Storage:** If the cashier’s internet connection drops, the POS app can still process transactions using a local temporary simulator storage, keeping operations running smoothly.
+1. **Performa Instan di Mobile:** Sisi klien menggunakan kerangka Tailwind CSS yang minimalis dan modern. Sangat ringan, hemat baterai ponsel kasir, dan rendering cepat.  
+2. **Keamanan Transaksi Konkuren:** Backend menggunakan `LockService` untuk mencegah konflik data jika beberapa kasir menekan tombol bayar dalam milidetik yang sama.  
+3. **Penyimpanan Lokal Hybrid:** Jika koneksi internet kasir terputus, aplikasi POS tetap dapat memproses transaksi menggunakan penyimpanan lokal sementara, sehingga operasional tidak terganggu.
